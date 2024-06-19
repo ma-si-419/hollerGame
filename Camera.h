@@ -10,10 +10,13 @@ public:
 	void Init();
 	void Update();
 
-	void SetPosAndAngle(MyEngine::Vector3 pos,MyEngine::Vector3 angle);
+	void SetPos(MyEngine::Vector3 pos) { m_pos = pos; }
+	void SetTargetPos(MyEngine::Vector3 target) { m_target = target; };
+
+	MyEngine::Vector3 GetDir() { return MyEngine::Vector3(m_target - m_pos).Normalize(); }
 
 private:
 	MyEngine::Vector3 m_pos;
-	MyEngine::Vector3 m_angle;
+	MyEngine::Vector3 m_target;
 };
 

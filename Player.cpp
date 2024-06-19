@@ -5,7 +5,7 @@ using namespace MyEngine;
 namespace
 {
 	//プレイヤーの基本的な移動速度
-	constexpr float kSpeed = 10.0f;
+	constexpr float kSpeed = 3.0f;
 }
 
 Player::Player() :
@@ -27,7 +27,7 @@ void Player::Init()
 
 void Player::Update(Input input)
 {
-	m_pos.y = 100;
+	m_pos.y = 40;
 	//スティックの情報を取得
 	Input::StickInfo stick = input.GetStickInfo();
 
@@ -68,6 +68,20 @@ void Player::Update(Input input)
 
 void Player::Draw()
 {
-	//MV1DrawModel(m_handle);
+	MV1DrawModel(m_handle);
+}
+
+MyEngine::Vector3 Player::GetCameraTarget()
+{
+	Vector3 targetVec(0,-3,30);
+	
+	//カメラの方向に合わせて動く方向を変化させる
+	MATRIX mat = MGetRotY(m_cameraDir.y);
+
+	targetVec = targetVec.MatTransform(mat);
+
+	Vector3 ans = m_pos + targetVec;
+
+	return ans;
 }
 

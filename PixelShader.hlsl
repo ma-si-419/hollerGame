@@ -162,7 +162,7 @@ PS_OUTPUT main(PS_INPUT input)
             power = 0.0f;
         }
         
-        power = pow(power, 3.0f);
+        power = pow(power, 0.5f);
         
         diffuseLight *= power;
         specularLight *= power;
@@ -178,16 +178,19 @@ PS_OUTPUT main(PS_INPUT input)
             power = 0.0f;
         }
 
-        power = pow(power, 0.5f);
+        power = pow(power, 3.0f);
 
+        
+        
         diffuseLight *= power;
         specularLight *= power;
         
         SLight = float3(specularLight + diffuseLight);
+
     }
     ////////////////////////////////////////////////////////////////
     
-    float3 finalColor = texCol.rgb * (PLight + DLight + SLight);
+    float3 finalColor = texCol.rgb * (/*PLight*/ + DLight + SLight);
     
     PS_OUTPUT outData;
     

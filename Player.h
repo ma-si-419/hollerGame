@@ -11,7 +11,7 @@ public:
 	void Draw();
 
 	MyEngine::Vector3 GetPos() { return m_pos; }
-	MyEngine::Vector3 GetCameraDir() { return m_cameraDir; }
+	MyEngine::Vector3 GetCameraTarget();
 private:
 
 	MyEngine::Vector3 m_cameraDir;

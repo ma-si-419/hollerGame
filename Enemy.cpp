@@ -23,5 +23,4 @@ void Enemy::Update()
 void Enemy::Draw()
 {
 	MV1DrawModel(m_handle);
-	DrawSphere3D(m_pos.CastVECTOR(), 50, 5, GetColor(255, 0, 0), GetColor(255, 255, 255), false);
 }

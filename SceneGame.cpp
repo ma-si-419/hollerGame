@@ -37,9 +37,9 @@ SceneGame::SceneGame(SceneManager& sceneManager) : SceneBase(sceneManager)
 	//ディレクションライトの情報を設定する
 	{
 
-		m_lightData->DLightColor[0] = 0.3f;
-		m_lightData->DLightColor[1] = 0.3f;
-		m_lightData->DLightColor[2] = 0.3f;
+		m_lightData->DLightColor[0] = 0.01f;
+		m_lightData->DLightColor[1] = 0.01f;
+		m_lightData->DLightColor[2] = 0.01f;
 
 		//m_lightData->DLightColor[0] = 0.0f;
 		//m_lightData->DLightColor[1] = 0.8f;
@@ -62,11 +62,11 @@ SceneGame::SceneGame(SceneManager& sceneManager) : SceneBase(sceneManager)
 		m_lightData->SpLightColor[1] = 1;
 		m_lightData->SpLightColor[2] = 1;
 
-		m_lightData->SpLightDir[0] = m_pPlayer->GetCameraDir().x;
-		m_lightData->SpLightDir[1] = m_pPlayer->GetCameraDir().y;
-		m_lightData->SpLightDir[2] = m_pPlayer->GetCameraDir().z;
+		m_lightData->SpLightDir[0] = m_pCamera->GetDir().x;
+		m_lightData->SpLightDir[1] = m_pCamera->GetDir().y;
+		m_lightData->SpLightDir[2] = m_pCamera->GetDir().z;
 
-		m_lightData->SpLightAngle = 3.14f / 180 * 25;
+		m_lightData->SpLightAngle = 3.14f / 180 * 90;
 
 		m_lightData->SpLightPower = 3000.0f;
 
@@ -99,7 +99,8 @@ void SceneGame::Update(MyEngine::Input input)
 {
 	m_pPlayer->Update(input);
 	m_pEnemy->Update();
-	m_pCamera->SetPosAndAngle(m_pPlayer->GetPos(),m_pPlayer->GetCameraDir());
+	m_pCamera->SetPos(m_pPlayer->GetPos());
+	m_pCamera->SetTargetPos(m_pPlayer->GetCameraTarget());
 	m_pCamera->Update();
 	//ポイントライトの情報を設定する
 	{
@@ -114,15 +115,11 @@ void SceneGame::Update(MyEngine::Input input)
 		m_lightData->SpLightPos[1] = m_pPlayer->GetPos().y;
 		m_lightData->SpLightPos[2] = m_pPlayer->GetPos().z;
 
-	/*	m_lightData->SpLightDir[0] = m_pPlayer->GetCameraDir().x;
-		m_lightData->SpLightDir[1] = m_pPlayer->GetCameraDir().y;
-		m_lightData->SpLightDir[2] = m_pPlayer->GetCameraDir().z;*/
+		m_lightData->SpLightDir[0] = m_pCamera->GetDir().x;
+		m_lightData->SpLightDir[1] = m_pCamera->GetDir().y;
+		m_lightData->SpLightDir[2] = m_pCamera->GetDir().z;
 
-		m_lightData->SpLightDir[0] = 0;
-		m_lightData->SpLightDir[1] = 0.5;
-		m_lightData->SpLightDir[2] = 1;
-
-		m_lightData->SpLightAngle = 3.14f / 180 * 25;
+		m_lightData->SpLightAngle = 3.14f / 180 * 50;
 
 		m_lightData->SpLightPower = 1000.0f;
 
@@ -144,6 +141,7 @@ void SceneGame::Draw()
 {
 	m_pPlayer->Draw();
 	m_pEnemy->Draw();
+	m_pPlayer->GetCameraTarget();
 	DrawString(0, 0, "SceneGame", GetColor(255, 255, 255));
 }
 
