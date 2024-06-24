@@ -4,6 +4,7 @@ Enemy::Enemy() :
 	CharacterBase("data/model/Enemy.mv1")
 {
 	m_pos.z = 800;
+	m_graphHandle = LoadGraph("data/Image/miniMapEnemy.png");
 }
 
 Enemy::~Enemy()

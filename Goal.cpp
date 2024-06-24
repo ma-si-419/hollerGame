@@ -5,7 +5,7 @@ namespace
 }
 
 Goal::Goal():
-	ObjectBase("data/model/Goal.mv1","data/image/miniMapPlayer.png")
+	ObjectBase("data/model/Goal.mv1","data/image/miniMapGoal.png")
 {
 	m_pos = MyEngine::Vector3(0, -50, 500);
 	MV1SetScale(m_modelHandle, VGet(100, 100, 100));
