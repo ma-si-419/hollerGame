@@ -13,6 +13,7 @@ public:
 	MyEngine::Vector3 GetPos() { return m_pos; }
 	MyEngine::Vector3 GetCameraTarget();
 	double GetPlayerDir();
+	double GetCameraDir() { return m_cameraDir.y; }
 private:
 
 	MyEngine::Vector3 m_moveDir;

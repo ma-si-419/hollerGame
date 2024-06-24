@@ -13,6 +13,7 @@ public:
 	void Draw();
 
 	void SetPlayerAngle(double angle) { m_playerAngle = angle; }
+	void SetCameraAngle(double angle) { m_cameraAngle = angle; }
 	void SetPlayerPos(MyEngine::Vector3 pos) { m_playerPos = pos; }
 	void EntryShowObject(MyEngine::Vector3 pos,int handle);
 private:
@@ -27,6 +28,8 @@ private:
 	int m_playerHandle;
 	//プレイヤーの向いている方向
 	double m_playerAngle;
+	//カメラの向いている方向
+	double m_cameraAngle;
 	//プレイヤーの座標
 	MyEngine::Vector3 m_playerPos;
 	//表示するオブジェクトの配列

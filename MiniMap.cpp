@@ -21,7 +21,8 @@ namespace
 MiniMap::MiniMap() :
 	m_pos(0, 0),
 	m_playerHandle(-1),
-	m_playerAngle(0.0)
+	m_playerAngle(0.0),
+	m_cameraAngle(0.0)
 {
 	m_playerHandle = LoadGraph("data/image/miniMapPlayer.png");
 }
@@ -41,17 +42,17 @@ void MiniMap::Update()
 
 void MiniMap::Draw()
 {
-	DrawRotaGraph(kBasePos.x, kBasePos.y,kPlayerScale,m_playerAngle, m_playerHandle, true);
+	DrawRotaGraph(kBasePos.x, kBasePos.y,kPlayerScale,m_playerAngle - m_cameraAngle, m_playerHandle, true);
 	DrawCircle(kBasePos.x,kBasePos.y,kMapSize,GetColor(255,255,255),false);
 
 	for (auto& item : m_objectList)
 	{
 		MyEngine::Vector3 toItem = item.pos - m_playerPos;
 
-		//MATRIX mat = MGetRotY(-m_playerAngle);
+		MATRIX mat = MGetRotY(-m_cameraAngle);
 
-		//toItem = toItem.MatTransform(mat);
-		//
+		toItem = toItem.MatTransform(mat);
+		
 		toItem /= kMapHeight;
 
 		MyEngine::Vector2 drawPos(toItem.x,-toItem.z);

@@ -59,6 +59,7 @@ void SceneGame::Update(MyEngine::Input input)
 	m_pCamera->Update();
 	//ミニマップ
 	m_pMiniMap->SetPlayerAngle(m_pPlayer->GetPlayerDir());
+	m_pMiniMap->SetCameraAngle(m_pPlayer->GetCameraDir());
 	m_pMiniMap->SetPlayerPos(m_pPlayer->GetPos());
 	m_pMiniMap->EntryShowObject(m_pGoal->GetPos(), m_pGoal->GetHandle());
 	m_pMiniMap->Update();
