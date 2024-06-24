@@ -6,8 +6,14 @@
 // プログラムは WinMain から始まります
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
+	bool isWindow = true;
+
 	// 一部の関数はDxLib_Init()の前に実行する必要がある
-	ChangeWindowMode(true);
+	ChangeWindowMode(isWindow);
+
+	SetGraphMode(1280, 960,16);
+
+	SetChangeScreenModeGraphicsSystemResetFlag(false);
 
 	if (DxLib_Init() == -1)		// ＤＸライブラリ初期化処理
 	{
@@ -15,6 +21,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	}
 
 	SetDrawScreen(DX_SCREEN_BACK);
+
 
 	SceneManager scene;
 	MyEngine::Input input;
@@ -32,9 +39,18 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		ClearDrawScreen();
 
 		// ゲームの処理
+		
+		//入力情報の更新
 		input.Update();
-
+		//セレクトボタンが押されたらウィンドウモードを切り替える
+		if (input.IsTrigger("SELECT"))
+		{
+			isWindow = !isWindow;
+			ChangeWindowMode(isWindow);
+		}
+		//シーンの更新
 		scene.Update(input);
+		//シーンの描画
 		scene.Draw();
 
 

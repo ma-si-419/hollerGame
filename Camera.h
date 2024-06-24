@@ -13,8 +13,9 @@ public:
 	void SetPos(MyEngine::Vector3 pos) { m_pos = pos; }
 	void SetTargetPos(MyEngine::Vector3 target) { m_target = target; };
 
-	MyEngine::Vector3 GetDir() { return MyEngine::Vector3(m_target - m_pos).Normalize(); }
+	MyEngine::Vector3 GetLightDir();
 
+	double GetCameraDir();
 private:
 	MyEngine::Vector3 m_pos;
 	MyEngine::Vector3 m_target;

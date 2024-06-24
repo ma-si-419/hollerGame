@@ -4,6 +4,10 @@
 class Player;
 class Camera;
 class Enemy;
+class Goal;
+class Stage;
+class MiniMap;
+
 class SceneGame : public SceneBase
 {
 private:
@@ -62,8 +66,18 @@ public:
 	/// </summary>
 	void End();
 private:
+	
+	//ライト情報の初期化
+	void InitLightData();
+	//ライト情報の更新
+	void UpdateLightData();
+
+
 	std::shared_ptr<Player> m_pPlayer;
 	std::shared_ptr<Enemy> m_pEnemy;
+	std::shared_ptr<Stage> m_pStage;
+	std::shared_ptr<Goal> m_pGoal;
+	std::shared_ptr<MiniMap> m_pMiniMap;
 	std::shared_ptr<Camera> m_pCamera;
 	//シェーダーハンドル
 	int m_psHandle;

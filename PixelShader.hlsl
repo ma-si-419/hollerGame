@@ -161,11 +161,14 @@ PS_OUTPUT main(PS_INPUT input)
         {
             power = 0.0f;
         }
-        
-        power = pow(power, 0.5f);
+
+        //ãóó£å∏êäÇÃçiÇË
+        power = pow(power, 0.3f);
         
         diffuseLight *= power;
         specularLight *= power;
+
+        
         
         float angle = dot(SLightIncidentVec, SpLightDir);
         
@@ -177,8 +180,10 @@ PS_OUTPUT main(PS_INPUT input)
         {
             power = 0.0f;
         }
+        
 
-        power = pow(power, 3.0f);
+        //åıÇÃï˚å¸Ç…ÇÊÇÈå∏êäÇÃçiÇË
+        power = pow(power, 0.9f);
 
         
         
@@ -190,7 +195,7 @@ PS_OUTPUT main(PS_INPUT input)
     }
     ////////////////////////////////////////////////////////////////
     
-    float3 finalColor = texCol.rgb * (/*PLight*/ + DLight + SLight);
+    float3 finalColor = texCol.rgb * (PLight + DLight + SLight);
     
     PS_OUTPUT outData;
     
