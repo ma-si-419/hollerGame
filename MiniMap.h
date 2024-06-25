@@ -15,6 +15,7 @@ public:
 	void SetPlayerAngle(double angle) { m_playerAngle = angle; }
 	void SetCameraAngle(double angle) { m_cameraAngle = angle; }
 	void SetPlayerPos(MyEngine::Vector3 pos) { m_playerPos = pos; }
+	void SetPlayerHandle(int handle) { m_playerHandle = handle; }
 	void EntryShowObject(MyEngine::Vector3 pos,int handle);
 private:
 	struct ShowObject

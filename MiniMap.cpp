@@ -24,7 +24,6 @@ MiniMap::MiniMap() :
 	m_playerAngle(0.0),
 	m_cameraAngle(0.0)
 {
-	m_playerHandle = LoadGraph("data/image/miniMapPlayer.png");
 }
 
 MiniMap::~MiniMap()
@@ -44,7 +43,6 @@ void MiniMap::Draw()
 {
 	DrawRotaGraph(kBasePos.x, kBasePos.y, kPlayerScale, m_playerAngle - m_cameraAngle, m_playerHandle, true);
 	DrawCircle(kBasePos.x, kBasePos.y, kMapSize, GetColor(255, 255, 255), false);
-
 	for (auto& item : m_objectList)
 	{
 		MyEngine::Vector3 toItem = item.pos - m_playerPos;
@@ -64,9 +62,10 @@ void MiniMap::Draw()
 		{
 			DrawRotaGraph(kBasePos.x + drawPos.x, kBasePos.y + drawPos.y, kObjectScale, 0.0, item.graphHandle, true);
 		}
-
 	}
 
+
+	m_objectList.clear();
 }
 
 void MiniMap::EntryShowObject(MyEngine::Vector3 pos, int handle)

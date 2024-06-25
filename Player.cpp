@@ -9,7 +9,7 @@ namespace
 }
 
 Player::Player() :
-	CharacterBase("data/model/Player.mv1"),
+	CharacterBase("data/model/Player.mv1","data/image/miniMapPlayer.png"),
 	m_cameraDir(0, 0, 0)
 {
 
@@ -53,7 +53,7 @@ void Player::Update(Input input)
 		m_pos += moveVec;
 	}
 
-	MV1SetPosition(m_handle, m_pos.CastVECTOR());
+	MV1SetPosition(m_modelHandle, m_pos.CastVECTOR());
 
 	//ƒJƒƒ‰‚ÌƒAƒ“ƒOƒ‹‚ğ•Ï‚¦‚é
 	if (input.IsPress("LB"))
@@ -70,7 +70,7 @@ void Player::Update(Input input)
 
 void Player::Draw()
 {
-	MV1DrawModel(m_handle);
+	MV1DrawModel(m_modelHandle);
 }
 
 MyEngine::Vector3 Player::GetCameraTarget()

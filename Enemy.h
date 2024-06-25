@@ -9,8 +9,6 @@ public:
 	void Init();
 	void Update();
 	void Draw();
-
-	int GetGraphHandle() { return m_graphHandle; }
 private:
 	int m_graphHandle;
 };

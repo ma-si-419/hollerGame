@@ -61,6 +61,7 @@ void SceneGame::Update(MyEngine::Input input)
 	m_pMiniMap->SetPlayerAngle(m_pPlayer->GetPlayerDir());
 	m_pMiniMap->SetCameraAngle(m_pPlayer->GetCameraDir());
 	m_pMiniMap->SetPlayerPos(m_pPlayer->GetPos());
+	m_pMiniMap->SetPlayerHandle(m_pPlayer->GetGraphHandle());
 	m_pMiniMap->EntryShowObject(m_pGoal->GetPos(), m_pGoal->GetHandle());
 	m_pMiniMap->Update();
 	if (input.IsTrigger("OK"))
