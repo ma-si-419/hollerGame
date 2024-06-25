@@ -42,8 +42,8 @@ void MiniMap::Update()
 
 void MiniMap::Draw()
 {
-	DrawRotaGraph(kBasePos.x, kBasePos.y,kPlayerScale,m_playerAngle - m_cameraAngle, m_playerHandle, true);
-	DrawCircle(kBasePos.x,kBasePos.y,kMapSize,GetColor(255,255,255),false);
+	DrawRotaGraph(kBasePos.x, kBasePos.y, kPlayerScale, m_playerAngle - m_cameraAngle, m_playerHandle, true);
+	DrawCircle(kBasePos.x, kBasePos.y, kMapSize, GetColor(255, 255, 255), false);
 
 	for (auto& item : m_objectList)
 	{
@@ -52,12 +52,19 @@ void MiniMap::Draw()
 		MATRIX mat = MGetRotY(-m_cameraAngle);
 
 		toItem = toItem.MatTransform(mat);
-		
+
 		toItem /= kMapHeight;
 
-		MyEngine::Vector2 drawPos(toItem.x,-toItem.z);
+		MyEngine::Vector2 drawPos(toItem.x, -toItem.z);
 
-		DrawRotaGraph(kBasePos.x + drawPos.x, kBasePos.y + drawPos.y, kObjectScale, 0.0, item.graphHandle, true);
+		//マップの外にいたら描画しない
+		float length = drawPos.Length();
+		DrawFormatString(200, 0, GetColor(255, 255, 255), "%f", length);
+		if (length < kMapSize + 15)
+		{
+			DrawRotaGraph(kBasePos.x + drawPos.x, kBasePos.y + drawPos.y, kObjectScale, 0.0, item.graphHandle, true);
+		}
+
 	}
 
 }
